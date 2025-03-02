@@ -24,6 +24,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
@@ -41,6 +42,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.compose.runtime.livedata.observeAsState
+
+import kotlinx.coroutines.delay
+
+import kotlin.text.format
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
+
 
 val images = arrayOf(
     // Image generated using Gemini from the prompt "cupcake image"
@@ -139,7 +148,7 @@ fun BakingScreen(
             modifier = Modifier.padding(all = 16.dp)
         ) {
 
-        HintLabelx(
+            HintLabelx(
                 modifier = Modifier
                     .weight(0.8f)
                     .padding(end = 16.dp)
@@ -147,13 +156,7 @@ fun BakingScreen(
             )
 
             Box() {
-                Text(
-                    text = stringResource(R.string.more_text),
-                    style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurface,
-                    modifier = Modifier
-                        .align(Alignment.TopEnd)
-                )
+                CurrentDateTimeText()
             }
         }
 
@@ -200,6 +203,26 @@ fun HintLabelx(
         color = MaterialTheme.colorScheme.onSurface,
         modifier = modifier
     )
+}
+
+@Composable
+fun CurrentDateTimeText() {
+    var currentDateTime by remember { mutableStateOf(getCurrentDateTime()) }
+    val context = LocalContext.current
+
+    LaunchedEffect(key1 = true) {
+        while (true) {
+            delay(1000) // Update every 1 second
+            currentDateTime = getCurrentDateTime()
+        }
+    }
+
+    Text(text = currentDateTime)
+}
+
+private fun getCurrentDateTime(): String {
+    val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
+    return dateFormat.format(Date())
 }
 
 @Preview(showSystemUi = true)

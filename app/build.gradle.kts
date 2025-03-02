@@ -54,6 +54,7 @@ dependencies {
     implementation(libs.androidx.material3)
     implementation(libs.generativeai)
     implementation(libs.androidx.compose.runtime.livedata)
+    implementation(libs.protolite.well.known.types)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
