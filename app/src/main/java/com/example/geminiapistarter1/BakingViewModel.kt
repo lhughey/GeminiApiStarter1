@@ -1,19 +1,18 @@
 package com.example.geminiapistarter1
 
 import android.graphics.Bitmap
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.ai.client.generativeai.GenerativeModel
 import com.google.ai.client.generativeai.type.content
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 class BakingViewModel : ViewModel() {
-    private val _uiState: MutableStateFlow<UiState> =  MutableStateFlow(UiState.Initial)
-    val uiState: StateFlow<UiState> = _uiState.asStateFlow()
+    private val _uiState = MutableLiveData<UiState>(UiState.Initial)
+    val uiState: LiveData<UiState> = _uiState
 
     private val generativeModel = GenerativeModel(
         modelName = "gemini-1.5-flash",
@@ -35,10 +34,10 @@ class BakingViewModel : ViewModel() {
                     }
                 )
                 response.text?.let { outputContent ->
-                    _uiState.value = UiState.Success(outputContent)
+                    _uiState.postValue(UiState.Success(outputContent))
                 }
             } catch (e: Exception) {
-                _uiState.value = UiState.Error(e.localizedMessage ?: "")
+                _uiState.postValue(UiState.Error(e.localizedMessage ?: ""))
             }
         }
     }

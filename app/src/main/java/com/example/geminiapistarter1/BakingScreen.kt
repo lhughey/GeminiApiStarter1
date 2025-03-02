@@ -40,6 +40,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.compose.runtime.livedata.observeAsState
 
 val images = arrayOf(
     // Image generated using Gemini from the prompt "cupcake image"
@@ -65,7 +66,9 @@ fun BakingScreen(
 
     var prompt by rememberSaveable { mutableStateOf(placeholderPrompt) }
     var result by rememberSaveable { mutableStateOf(placeholderResult) }
-    val uiState by bakingViewModel.uiState.collectAsState()
+
+    // Observe LiveData
+    val uiState by bakingViewModel.uiState.observeAsState(UiState.Initial)
     val context = LocalContext.current
 
     Column(
