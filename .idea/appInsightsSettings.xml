@@ -22,10 +22,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.example.geminiapistarter1" />
+                  <option name="mobileSdkAppId" value="1:60227248088:android:6800044f9dc961f306dcad" />
+                  <option name="projectId" value="kotlin1-2b2cf" />
+                  <option name="projectNumber" value="60227248088" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />

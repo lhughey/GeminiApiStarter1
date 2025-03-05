@@ -44,6 +44,9 @@ android {
 }
 
 dependencies {
+//    implementation("androidx.navigation:navigation-compose:2.9.0-alpha07") {
+//        exclude(group = "androidx.navigation", module = "navigation-compose-jvmstubs")
+//    }
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -58,7 +61,7 @@ dependencies {
     implementation(libs.androidx.compose.runtime.livedata)
     implementation(libs.protolite.well.known.types)
     implementation(libs.androidx.navigation.compose)
-    implementation(libs.androidx.navigation.compose.jvmstubs)
+//    implementation(libs.androidx.navigation.compose.jvmstubs)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

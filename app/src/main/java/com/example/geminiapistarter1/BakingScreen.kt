@@ -8,6 +8,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.FlowRowScopeInstance.align
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -42,6 +43,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.ui.Alignment.Companion.Center
+import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavController
 
 import kotlinx.coroutines.delay
@@ -97,10 +100,22 @@ fun BakingScreen(
                 //navigate to the FreeStyleScreen
                 navController.navigate("freestyle")
             },
-            modifier = Modifier.padding(16.dp)
+            modifier = Modifier
+                .align(Alignment.CenterHorizontally)
+                .align(Alignment.End)
+
+
+            //create a veritical alignment
+
+
         )
         {
-            Text(text = stringResource(R.string.action_freestyle))
+            Text(
+                text = stringResource(R.string.action_freestyle),
+                color = Color.White,
+                style = MaterialTheme.typography.bodyLarge,
+                modifier = Modifier.align(Alignment.Bottom)
+            )
         }
 
 
