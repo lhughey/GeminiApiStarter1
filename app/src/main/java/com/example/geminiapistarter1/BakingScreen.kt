@@ -42,6 +42,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.navigation.NavController
 
 import kotlinx.coroutines.delay
 
@@ -67,6 +68,7 @@ val imageDescriptions = arrayOf(
 
 @Composable
 fun BakingScreen(
+    navController: NavController,
     bakingViewModel: BakingViewModel = viewModel()
 ) {
     val selectedImage = remember { mutableIntStateOf(0) }
@@ -89,6 +91,18 @@ fun BakingScreen(
             style = MaterialTheme.typography.titleLarge,
             modifier = Modifier.padding(16.dp)
         )
+        //add a button that links to the FreeStyleScreen
+        Button(
+            onClick = {
+                //navigate to the FreeStyleScreen
+                navController.navigate("freestyle")
+            },
+            modifier = Modifier.padding(16.dp)
+        )
+        {
+            Text(text = stringResource(R.string.action_freestyle))
+        }
+
 
         LazyRow(
             modifier = Modifier.fillMaxWidth()
@@ -228,5 +242,5 @@ private fun getCurrentDateTime(): String {
 @Preview(showSystemUi = true)
 @Composable
 fun BakingScreenPreview() {
-    BakingScreen()
+    BakingScreen(navController = NavController(LocalContext.current))
 }

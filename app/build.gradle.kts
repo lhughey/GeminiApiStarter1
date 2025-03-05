@@ -57,6 +57,8 @@ dependencies {
     implementation(libs.generativeai)
     implementation(libs.androidx.compose.runtime.livedata)
     implementation(libs.protolite.well.known.types)
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.navigation.compose.jvmstubs)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
